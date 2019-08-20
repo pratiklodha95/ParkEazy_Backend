@@ -1,7 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 import requests
 import json
-
+from scripts.naturals_handler import *
 
 with open('data/UrbanClap_data.json') as json_file:
     uc_data = json.load(json_file)
@@ -127,6 +127,12 @@ def function():
         return make_response(jsonify(results()))
     except:
         return make_response(jsonify({'fulfillmentText':'Apologies - The Urban Clap API failed to respond'}))
-        
+
+
+@app.route('/naturals',methods=['GET','POST'])
+def webhook_responder():
+    print("Naturals Webhook called")
+    return make_response(jsonify(naturals_response_handler()))
+
 if __name__ == '__main__':
     app.run(debug=True)
