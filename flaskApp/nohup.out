@@ -1,0 +1,9 @@
+[2019-08-21 19:08:08 +0000] [1795] [INFO] Starting gunicorn 19.7.1
+[2019-08-21 19:08:08 +0000] [1795] [INFO] Listening at: http://127.0.0.1:8000 (1795)
+[2019-08-21 19:08:08 +0000] [1795] [INFO] Using worker: sync
+[2019-08-21 19:08:08 +0000] [1798] [INFO] Booting worker with pid: 1798
+[2019-08-21 19:27:29 +0000] [1795] [INFO] Handling signal: hup
+[2019-08-21 19:27:29 +0000] [1795] [INFO] Hang up: Master
+[2019-08-21 19:27:30 +0000] [1846] [INFO] Booting worker with pid: 1846
+[2019-08-22 04:59:05 +0000] [1795] [INFO] Handling signal: term
+[2019-08-22 04:59:05 +0000] [1795] [INFO] Shutting down: Master

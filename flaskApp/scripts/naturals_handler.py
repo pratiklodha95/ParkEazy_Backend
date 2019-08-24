@@ -8,16 +8,33 @@ Sample request
 
 """
 
+def check_context(contexts_arr,context_name):
+    return (len([cn for cn in contexts_arr if cn['name'].find(context_name)!=-1])>0)
+
 def process_location(query_results):
     parameters = query_results['parameters']
-    print("Processing the address at ",parameters['address'])
+    if(len(parameters['address'])<5 and not check_context(query_results['outputContexts'],"address_saved")):
+        print("triggering location event")
+        return {"followupEventInput":{
+            "name":"getlocation"
+        }}
+    else:
+        print("Processing the address at ",parameters['address'])
+        {
+        "fulfillmentText":"What would you like to order?",
+        "outputContexts": [
+            {
+                "name": "projects/foodbot-ywldrl/agent/sessions/93908294-ca63-d49f-5b51-1a6c0e7c2368/contexts/address_saved",
+                "lifespanCount":25
+            } 
+        ]
+        }
     return 1
 
 def intent_handler(intent,query_results):
-    if(intent = "delivery:location"):
-        process_location(query_results)
-        return {"fulfillmentText":"What would you like to order?"}
-    elif(intent = "delivery:order"):
+    if(intent == "delivery:location"):
+        return process_location(query_results)
+    elif(intent == "delivery:order"):
         print("Processing Order")
     else:
         return {"fulfillmentText":"The work is still in progress for the intent {}".format(intent)}
